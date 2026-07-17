@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:router_practice/screens/create_task_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/project_detail_screen.dart';
@@ -26,7 +27,8 @@ class TrackMyWorkApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const HomeScreen(),
         '/profile': (context) => const ProfileScreen(),
-      },
+        '/create-task': (context) => const CreateTaskScreen(),
+},
       // Navigator clásico requiere esta función para capturar rutas con parámetros dinámicos
       onGenerateRoute: (settings) {
         if (settings.name != null &&

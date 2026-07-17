@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/task_arguments.dart'; // Importa el modelo
 
 class ProjectDetailScreen extends StatelessWidget {
   final String projectId;
@@ -21,8 +22,32 @@ class ProjectDetailScreen extends StatelessWidget {
                 'Viendo el Proyecto ID: $projectId',
                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
+              const SizedBox(height: 30),
+
+              ElevatedButton.icon(
+                icon: const Icon(Icons.add),
+                label: const Text('Crear Tarea en este Proyecto'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.teal.shade50,
+                ),
+                onPressed: () {
+                  final initData = TaskInitializationModel(
+                    projectId: projectId,
+                    defaultAssignee: 'Jhoan Gil',
+                    createdAt: DateTime.now(),
+                  );
+
+                  // Navegas y lo envías como argumento
+                  Navigator.pushNamed(
+                    context,
+                    '/create-task',
+                    arguments: initData,
+                  );
+                },
+              ),
+
+              const SizedBox(height: 15),
+              TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: const Text('Volver al listado'),
               ),
