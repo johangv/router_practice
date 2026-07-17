@@ -1,88 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  // Recibimos el controlador de pestañas que nos da GoRouter
+  final StatefulNavigationShell navigationShell;
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
-
-  // Lista de proyectos quemados (mock data)
-  final List<Map<String, String>> _projects = [
-    {'id': '101', 'name': 'Rediseño de Invoices'},
-    {'id': '102', 'name': 'Refactor de Accesibilidad'},
-    {'id': '103', 'name': 'Integración GoRouter'},
-  ];
+  const HomeScreen({required this.navigationShell, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () => context.push('/login')
-          ),
-        ],
-      ),
-      // Mostramos la pestaña correspondiente
-      body: _currentIndex == 0 ? _buildProjectsTab() : _buildProfileTab(),
+      // El body es el propio shell de navegación que GoRouter se encarga de renderizar e indexar
+      body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        // Leemos el índice actual directamente de la rama activa de GoRouter
+        currentIndex: navigationShell.currentIndex,
+        onTap: (int index) {
+          // Cambiamos de pestaña de forma segura con la API de GoRouter
+          navigationShell.goBranch(
+            index,
+            // Si el usuario toca la pestaña que ya está activa, regresa a la raíz de esa pestaña
+            initialLocation: index == navigationShell.currentIndex,
+          );
+        },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Proyectos'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
-        ],
-      ),
-    );
-  }
-
-  // PESTAÑA DE PROYECTOS (Paso de parámetros)
-  Widget _buildProjectsTab() {
-    return ListView.builder(
-      itemCount: _projects.length,
-      itemBuilder: (context, index) {
-        final project = _projects[index];
-        return ListTile(
-          leading: const Icon(Icons.folder, color: Colors.amber),
-          title: Text(project['name']!),
-          subtitle: Text('ID: ${project['id']}'),
-          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-          onTap: () => context.push('/project-detail/${project['id']}'),
-        );
-      },
-    );
-  }
-
-  // PESTAÑA DE PERFIL (Retorno de datos esperando un resultado)
-  Widget _buildProfileTab() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
-          const SizedBox(height: 16),
-          const Text('Jhoan Gil', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 30),
-          ElevatedButton.icon(
-            icon: const Icon(Icons.settings),
-            label: const Text('Ir a Configuración (Esperar resultado)'),
-            onPressed: () async {
-              
-              final resultado = await context.push('/profile');
-              
-              if (context.mounted && resultado != null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Tema seleccionado: $resultado')),
-                );
-              }
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.work_outline),
+            activeIcon: Icon(Icons.work),
+            label: 'Proyectos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            activeIcon: Icon(Icons.person),
+            label: 'Perfil',
           ),
         ],
       ),

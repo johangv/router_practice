@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () => context.go('/home'),
+                onPressed: () => context.go('/home/projects'),
                 child: const Text('Simular Login'),
               ),
             ],

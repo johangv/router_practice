@@ -1,8 +1,9 @@
+// lib/screens/theme_selector_screen.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ThemeSelectorScreen extends StatelessWidget {
+  const ThemeSelectorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +15,19 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Selecciona un modo de visualización:',
+              'Elige tu estilo visual:',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             ListTile(
-              leading: const Icon(Icons.wb_sunny),
+              leading: const Icon(Icons.wb_sunny, color: Colors.orange),
               title: const Text('Modo Claro'),
-              onTap: () => context.pop('Modo Claro'), // Retorna valor
+              onTap: () => context.pop('Modo Claro'), // Retorna el String
             ),
             ListTile(
-              leading: const Icon(Icons.nightlight_round),
+              leading: const Icon(Icons.nightlight_round, color: Colors.indigo),
               title: const Text('Modo Oscuro'),
-              onTap: () => context.pop('Modo Oscuro'), // Retorna valor
+              onTap: () => context.pop('Modo Oscuro'), // Retorna el String
             ),
           ],
         ),
