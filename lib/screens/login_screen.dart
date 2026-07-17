@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,10 +22,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {
-                  // Navegación clásica limpiando el historial para que no puedan volver al login
-                  Navigator.pushReplacementNamed(context, '/home');
-                },
+                onPressed: () => context.go('/home'),
                 child: const Text('Simular Login'),
               ),
             ],

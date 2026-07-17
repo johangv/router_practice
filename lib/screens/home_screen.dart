@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,10 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
-            onPressed: () {
-              // Cerrar sesión y volver al login
-              Navigator.pushReplacementNamed(context, '/login');
-            },
+            onPressed: () => context.push('/login')
           ),
         ],
       ),
@@ -56,10 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(project['name']!),
           subtitle: Text('ID: ${project['id']}'),
           trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-          onTap: () {
-            // Navegamos al detalle pasando el ID en la ruta
-            Navigator.pushNamed(context, '/project-detail/${project['id']}');
-          },
+          onTap: () => context.push('/project-detail/${project['id']}'),
         );
       },
     );
@@ -79,8 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.settings),
             label: const Text('Ir a Configuración (Esperar resultado)'),
             onPressed: () async {
-              // Esperamos de forma asíncrona que la pantalla de perfil retorne algo
-              final resultado = await Navigator.pushNamed(context, '/profile');
+              
+              final resultado = await context.push('/profile');
               
               if (context.mounted && resultado != null) {
                 ScaffoldMessenger.of(context).showSnackBar(

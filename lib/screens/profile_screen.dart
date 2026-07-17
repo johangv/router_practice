@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -20,12 +21,12 @@ class ProfileScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.wb_sunny),
               title: const Text('Modo Claro'),
-              onTap: () => Navigator.pop(context, 'Modo Claro'), // Retorna valor
+              onTap: () => context.pop('Modo Claro'), // Retorna valor
             ),
             ListTile(
               leading: const Icon(Icons.nightlight_round),
               title: const Text('Modo Oscuro'),
-              onTap: () => Navigator.pop(context, 'Modo Oscuro'), // Retorna valor
+              onTap: () => context.pop('Modo Oscuro'), // Retorna valor
             ),
           ],
         ),

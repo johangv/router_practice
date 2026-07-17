@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/task_arguments.dart'; // Importa el modelo
 
 class ProjectDetailScreen extends StatelessWidget {
@@ -37,18 +38,13 @@ class ProjectDetailScreen extends StatelessWidget {
                     createdAt: DateTime.now(),
                   );
 
-                  // Navegas y lo envías como argumento
-                  Navigator.pushNamed(
-                    context,
-                    '/create-task',
-                    arguments: initData,
-                  );
+                  context.push('/create-task', extra: initData);
                 },
               ),
 
               const SizedBox(height: 15),
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Volver al listado'),
               ),
             ],

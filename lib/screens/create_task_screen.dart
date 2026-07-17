@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../models/task_arguments.dart';
 
 class CreateTaskScreen extends StatelessWidget {
-  const CreateTaskScreen({super.key});
+  const CreateTaskScreen({super.key, required this.initData});
+
+  final TaskInitializationModel initData;
 
   @override
   Widget build(BuildContext context) {
-    
-    final initData = ModalRoute.of(context)!.settings.arguments as TaskInitializationModel;
 
     return Scaffold(
       appBar: AppBar(
