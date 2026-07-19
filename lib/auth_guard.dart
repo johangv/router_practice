@@ -8,7 +8,7 @@ class AuthGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     // 1. Evaluamos la sesión del usuario
     if (checkUserSession()) {
-      // Si es true, le damos luz verde para continuar a la pantalla que quería ir
+      // Navegación normal
       resolver.next(true); 
     } else {
       // Si es false, frenamos la navegación y lo redirigimos al Login

@@ -34,7 +34,8 @@ class ProfileTabScreen extends StatelessWidget {
               label: const Text('Cambiar Tema (Esperar resultado)'),
               onPressed: () async {
                 // Navegamos a la sub-ruta usando push para poder recibir el valor del pop
-                final String? resultado = await context.pushRoute(
+                final String? resultado = await context.router.root
+                    .push<String>(
                   const ThemeSelectorRoute(),
                 );
                 

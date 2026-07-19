@@ -115,6 +115,7 @@ class ProjectDetailRoute extends PageRouteInfo<ProjectDetailRouteArgs> {
   }) : super(
          ProjectDetailRoute.name,
          args: ProjectDetailRouteArgs(projectId: projectId, key: key),
+         rawPathParams: {'projectId': projectId},
          initialChildren: children,
        );
 
@@ -123,7 +124,12 @@ class ProjectDetailRoute extends PageRouteInfo<ProjectDetailRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ProjectDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ProjectDetailRouteArgs>(
+        orElse: () => ProjectDetailRouteArgs(
+          projectId: pathParams.getString('projectId'),
+        ),
+      );
       return ProjectDetailScreen(projectId: args.projectId, key: args.key);
     },
   );
@@ -150,6 +156,22 @@ class ProjectDetailRouteArgs {
 
   @override
   int get hashCode => projectId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [ProjectListScreen]
+class ProjectListRoute extends PageRouteInfo<void> {
+  const ProjectListRoute({List<PageRouteInfo>? children})
+    : super(ProjectListRoute.name, initialChildren: children);
+
+  static const String name = 'ProjectListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProjectListScreen();
+    },
+  );
 }
 
 /// generated route for

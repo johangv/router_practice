@@ -7,7 +7,10 @@ import '../models/task_arguments.dart';
 class ProjectDetailScreen extends StatelessWidget {
   final String projectId;
 
-  const ProjectDetailScreen({required this.projectId, super.key});
+  const ProjectDetailScreen({
+    @PathParam('projectId') required this.projectId,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
