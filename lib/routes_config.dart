@@ -19,7 +19,6 @@ class AppRoute extends RootStackRouter {
   AppRoute({required this.authGuard});
   
   @override
-
   List<AutoRoute> get routes => [
     AutoRoute(
       page: HomeRoute.page,

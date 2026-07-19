@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 
                 <!-- Define el esquema personalizado (Ej: trackmywork://) -->
-                <data android:scheme="trackmywork" />
+                <data android:scheme="trackmywork" android:host="app" />
                 <!-- Opcional: si quieres capturar un dominio web real (Ej: https://trackmywork.com) -->
                 <!-- <data android:scheme="https" android:host="trackmywork.com" /> -->
             </intent-filter>
