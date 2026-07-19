@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:router_practice/routes_config.dart';
 
+@RoutePage()
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -22,7 +24,9 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () => context.go('/home/projects'),
+                onPressed: () {
+                  context.router.replaceAll([const HomeRoute()]);
+                },
                 child: const Text('Simular Login'),
               ),
             ],

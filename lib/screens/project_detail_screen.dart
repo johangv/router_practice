@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import '../models/task_arguments.dart'; // Importa el modelo
+import 'package:router_practice/routes_config.dart';
+import '../models/task_arguments.dart';
 
+@RoutePage()
 class ProjectDetailScreen extends StatelessWidget {
   final String projectId;
 
@@ -38,7 +40,7 @@ class ProjectDetailScreen extends StatelessWidget {
                     createdAt: DateTime.now(),
                   );
 
-                  context.push('/create-task', extra: initData);
+                  context.pushRoute(CreateTaskRoute(initData: initData)); 
                 },
               ),
 

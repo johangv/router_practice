@@ -1,7 +1,8 @@
-// lib/screens/projects_tab_screen.dart
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:router_practice/routes_config.dart';
 
+@RoutePage()
 class ProjectsTabScreen extends StatelessWidget {
   const ProjectsTabScreen({super.key});
 
@@ -28,8 +29,8 @@ class ProjectsTabScreen extends StatelessWidget {
             subtitle: Text('ID: ${project['id']}'),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {
-              // Navegación con GoRouter usando la ruta hija que definimos
-              context.go('/home/projects/detail/${project['id']}');
+              // Navegación con AutoRoute usando la ruta hija que definimos
+              context.pushRoute(ProjectDetailRoute(projectId: project['id']!));
             },
           );
         },

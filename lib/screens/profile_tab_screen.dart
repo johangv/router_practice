@@ -1,7 +1,9 @@
 // lib/screens/profile_tab_screen.dart
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:router_practice/routes_config.dart';
 
+@RoutePage()
 class ProfileTabScreen extends StatelessWidget {
   const ProfileTabScreen({super.key});
 
@@ -32,7 +34,9 @@ class ProfileTabScreen extends StatelessWidget {
               label: const Text('Cambiar Tema (Esperar resultado)'),
               onPressed: () async {
                 // Navegamos a la sub-ruta usando push para poder recibir el valor del pop
-                final String? resultado = await context.push<String>('/home/profile/theme-selector');
+                final String? resultado = await context.pushRoute(
+                  const ThemeSelectorRoute(),
+                );
                 
                 if (context.mounted && resultado != null) {
                   ScaffoldMessenger.of(context).showSnackBar(

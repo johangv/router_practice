@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../models/task_arguments.dart';
 
+@RoutePage()
 class CreateTaskScreen extends StatelessWidget {
   const CreateTaskScreen({super.key, required this.initData});
 
