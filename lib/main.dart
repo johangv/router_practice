@@ -19,15 +19,7 @@ class TrackMyWorkApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: appRoute.config(
-        deepLinkBuilder: (deeplink) {
-          if (deeplink.path.startsWith('/projects')) {
-            return deeplink;
-          } else {
-            return DeepLink.defaultPath;
-          }
-        },
-      ),
+      routerConfig: appRoute.config(),
     );
   }
 }
